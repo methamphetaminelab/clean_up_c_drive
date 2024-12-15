@@ -197,6 +197,20 @@ def clear_driver_install_logs():
     except Exception as e:
         print(f"Error clearing driver installation logs: {e}")
 
+def perform_full_cleanup():
+    clear_temp()
+    clear_recycle_bin()
+    disable_hibernation()
+    clean_disk()
+    clear_event_logs()
+    clear_browser_cache()
+    clear_windows_update_cache()
+    clear_installer_temp()
+    delete_old_system_restore_points()
+    clear_prefetch()
+    clear_windows_store_cache()
+    clear_driver_install_logs()
+
 def main():
     while True:
         print("\nSystem Cleanup")
@@ -212,9 +226,10 @@ def main():
         print("10. Clear Prefetch Folder")
         print("11. Clear Windows Store Cache")
         print("12. Clear Driver Installation Logs")
+        print("13. Perform Full Cleanup")
         print("0. Exit")
 
-        choice = input("\nChoose an action (0-12): ")
+        choice = input("\nChoose an action (0-13): ")
         
         os.system('cls' if os.name == 'nt' else 'clear')
 
@@ -242,6 +257,9 @@ def main():
             clear_windows_store_cache()
         elif choice == "12":
             clear_driver_install_logs()
+        elif choice == "13":
+            print("\nPerforming full system cleanup...")
+            perform_full_cleanup()
         elif choice == "0":
             print("\nExiting the program.")
             break
