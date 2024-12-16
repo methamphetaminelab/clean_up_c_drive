@@ -181,8 +181,13 @@ def clear_windows_store_cache():
     try:
         subprocess.run(["wsreset.exe"], check=True)
         print("Windows Store cache cleared.")
+
+        subprocess.run(["taskkill", "/IM", "WinStore.App.exe", "/F"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+        print("Microsoft Store automatically closed.")
     except subprocess.CalledProcessError:
         print("Failed to clear Windows Store cache.")
+    except Exception as e:
+        print(f"Unexpected error: {e}")
 
 def clear_driver_install_logs():
     print("\nClearing driver installation logs...")
